@@ -1,9 +1,17 @@
 import React from "react";
+import ChildComponent from "./ChildComponent";
 
 class MyComponent extends React.Component {
     state = {
         masv: '',
-        password: ''
+        password: '',
+        arrClass: [
+            { id: '1', lop: '18IT1', khoa: 'Khoa học máy tính' },
+            { id: '2', lop: '18IT2', khoa: 'Khoa học máy tính' },
+            { id: '3', lop: '18IT3', khoa: 'Khoa học máy tính' },
+            { id: '4', lop: '18IT4', khoa: 'Khoa học máy tính' },
+            { id: '5', lop: '18IT5', khoa: 'Khoa học máy tính' },
+        ]
     }
 
     handleChangeMasv = (event) => {
@@ -47,6 +55,10 @@ class MyComponent extends React.Component {
                         onClick={(event) => this.handleSubmit(event)}
                     />
                 </form>
+                <ChildComponent
+                    state={this.state}
+                    arrClass={this.state.arrClass}
+                />
             </>
         )
     }
