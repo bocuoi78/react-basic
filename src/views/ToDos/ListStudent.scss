@@ -1,0 +1,30 @@
+.list-student-container {
+    button {
+        cursor: pointer;
+    }
+
+    .add-student {
+        .add {
+            margin: 0 10px;
+        }
+    }
+
+    .list-student-content {
+        width: 400px;
+        margin: 0 auto;
+
+        .student-child {
+            &:first-child {
+                border-top: 1px solid gray;
+            }
+
+            height: 40px;
+            border-bottom: 1px solid gray;
+            margin: 10px;
+
+            .edit {
+                margin: 0 10px;
+            }
+        }
+    }
+}
