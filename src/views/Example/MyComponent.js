@@ -11,7 +11,8 @@ class MyComponent extends React.Component {
             { id: '3', lop: '18IT3', khoa: 'Khoa học máy tính' },
             { id: '4', lop: '18IT4', khoa: 'Khoa học máy tính' },
             { id: '5', lop: '18IT5', khoa: 'Khoa học máy tính' },
-        ]
+        ],
+        showPass: false
     }
 
     handleChangeMasv = (event) => {
@@ -31,7 +32,15 @@ class MyComponent extends React.Component {
         alert(this.state.masv)
     }
 
+    handleShowHide = (event) => {
+        event.preventDefault()
+        this.setState({
+            showPass: !this.state.showPass
+        })
+    }
+
     render() {
+        let { showPass } = this.state
         return (
             <>
                 <form>
@@ -44,10 +53,13 @@ class MyComponent extends React.Component {
                     <br />
                     <label>Mật khẩu:</label><br />
                     <input
-                        type="password"
+                        type={showPass === false ? 'password' : 'text'}
                         value={this.state.password}
                         onChange={(event) => this.handleChangePassword(event)}
                     />
+                    <button onClick={(event) => this.handleShowHide(event)}>
+                        {showPass === false ? 'Show' : 'Hide'}
+                    </button>
                     <br />
                     <input
                         type="submit"
