@@ -2,7 +2,7 @@ import React from "react";
 
 class ChildComponent extends React.Component {
     state = {
-        showClass: false
+        showClass: true
     }
 
     handleShowHide = () => {
@@ -11,8 +11,12 @@ class ChildComponent extends React.Component {
         })
     }
 
+    handleOnClickDelete = (account) => {
+        this.props.deleteAccount(account)
+    }
+
     render() {
-        let { arrClass } = this.props;
+        let { arrAccount } = this.props;
         let { showClass } = this.state;
         return (
             <>
@@ -24,10 +28,10 @@ class ChildComponent extends React.Component {
                     <>
                         <div className="class-list">
                             {
-                                arrClass.map((item, index) => {
+                                arrAccount.map((item, index) => {
                                     return (
                                         <div key={item.id}>
-                                            {item.lop} - {item.khoa}
+                                            {item.masv} - {item.password} &nbsp; <span onClick={() => this.handleOnClickDelete(item)}>x</span>
                                         </div>
                                     )
                                 })

@@ -1,75 +1,42 @@
 import React from "react";
+import AddComponent from "./LoginComponent";
 import ChildComponent from "./ChildComponent";
 
 class MyComponent extends React.Component {
     state = {
-        masv: '',
-        password: '',
-        arrClass: [
-            { id: '1', lop: '18IT1', khoa: 'Khoa học máy tính' },
-            { id: '2', lop: '18IT2', khoa: 'Khoa học máy tính' },
-            { id: '3', lop: '18IT3', khoa: 'Khoa học máy tính' },
-            { id: '4', lop: '18IT4', khoa: 'Khoa học máy tính' },
-            { id: '5', lop: '18IT5', khoa: 'Khoa học máy tính' },
-        ],
-        showPass: false
+        arrAccount: [
+            { id: '1', masv: '18IT100', password: 'Abc@18IT100' },
+            { id: '2', masv: '18IT200', password: 'Abc@18IT200' },
+            { id: '3', masv: '18IT300', password: 'Abc@18IT300' },
+            { id: '4', masv: '18IT400', password: 'Abc@18IT400' },
+            { id: '5', masv: '18IT500', password: 'Abc@18IT500' },
+        ]
     }
 
-    handleChangeMasv = (event) => {
+    addNewAccount = (account) => {
         this.setState({
-            masv: event.target.value
+            arrAccount: [...this.state.arrAccount, account]
         })
     }
 
-    handleChangePassword = (event) => {
+    deleteAccount = (account) => {
+        let currentAccounut = this.state.arrAccount;
+        console.log(account)
+        currentAccounut = currentAccounut.filter(item => item.id !== account.id)
         this.setState({
-            password: event.target.value
-        })
-    }
-
-    handleSubmit = (event) => {
-        event.preventDefault()
-        alert(this.state.masv)
-    }
-
-    handleShowHide = (event) => {
-        event.preventDefault()
-        this.setState({
-            showPass: !this.state.showPass
+            arrAccount: currentAccounut
         })
     }
 
     render() {
-        let { showPass } = this.state
         return (
             <>
-                <form>
-                    <label>Mã sinh viên:</label><br />
-                    <input
-                        type="text"
-                        value={this.state.masv}
-                        onChange={(event) => this.handleChangeMasv(event)}
-                    />
-                    <br />
-                    <label>Mật khẩu:</label><br />
-                    <input
-                        type={showPass === false ? 'password' : 'text'}
-                        value={this.state.password}
-                        onChange={(event) => this.handleChangePassword(event)}
-                    />
-                    <button onClick={(event) => this.handleShowHide(event)}>
-                        {showPass === false ? 'Show' : 'Hide'}
-                    </button>
-                    <br />
-                    <input
-                        type="submit"
-                        value="Đăng nhập"
-                        onClick={(event) => this.handleSubmit(event)}
-                    />
-                </form>
+                <AddComponent
+                    addNewAccount={this.addNewAccount}
+                />
                 <ChildComponent
-                    state={this.state}
-                    arrClass={this.state.arrClass}
+                    arrAccount={this.state.arrAccount}
+                    deleteAccount={this.deleteAccount}
                 />
             </>
         )
